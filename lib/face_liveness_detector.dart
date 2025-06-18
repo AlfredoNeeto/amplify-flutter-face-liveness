@@ -14,6 +14,8 @@ class FaceLivenessDetector extends StatefulWidget {
   /// The AWS region where the Face Liveness session was created.
   final String region;
 
+  final bool disableStartView;
+
   /// Callback that is called when face liveness check is completed successfully.
   final VoidCallback? onComplete;
 
@@ -23,14 +25,16 @@ class FaceLivenessDetector extends StatefulWidget {
 
   /// Creates a Face Liveness detector widget.
   ///
-  /// [sessionId] is required and must be a valid AWS Rekognition Face Liveness session ID.
-  /// [region] is required and must be a valid AWS region where the session was created.
-  /// [onComplete] is called when the face liveness check is completed successfully.
-  /// [onError] is called when an error occurs during the face liveness check.
+/// [sessionId] is required and must be a valid AWS Rekognition Face Liveness session ID.
+/// [region] is required and must be a valid AWS region where the session was created.
+/// [disableStartView] is optional. If set to true, it disables the default start view (intro screen) of the Face Liveness check.
+/// [onComplete] is called when the face liveness check is completed successfully.
+/// [onError] is called when an error occurs during the face liveness check.
   const FaceLivenessDetector({
     super.key,
     required this.sessionId,
     required this.region,
+    required this.disableStartView,
     this.onComplete,
     this.onError,
   });
@@ -63,6 +67,7 @@ class _FaceLivenessDetectorState extends State<FaceLivenessDetector> {
         creationParams: {
           'sessionId': widget.sessionId,
           'region': widget.region,
+          'disableStartView': widget.disableStartView,
         },
         creationParamsCodec: const StandardMessageCodec(),
       );
@@ -73,6 +78,7 @@ class _FaceLivenessDetectorState extends State<FaceLivenessDetector> {
       creationParams: {
         'sessionId': widget.sessionId,
         'region': widget.region,
+        'disableStartView': widget.disableStartView,
       },
       creationParamsCodec: const StandardMessageCodec(),
     );
