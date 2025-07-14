@@ -64,7 +64,7 @@ struct NativeView: View {
     
     @State private var isPresentingLiveness = true
     
-    init(sessionId: String, region: String, handler: EventStreamHadler) {
+    init(sessionId: String, region: String, disableStartView: Bool, handler: EventStreamHadler) {
         self.sessionId = sessionId
         self.region = region
         self.disableStartView = disableStartView
