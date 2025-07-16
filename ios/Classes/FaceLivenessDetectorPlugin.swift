@@ -1,11 +1,12 @@
 import Flutter
 import UIKit
-import face_liveness_detector
 
 public class FaceLivenessDetectorPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    // Forward registration to our actual plugin implementation
-    // The FaceLivenessPlugin class needs to match the class name in the face_liveness_detector module
+    let channel = FlutterMethodChannel(name: "face_liveness_detector", binaryMessenger: registrar.messenger())
+    let instance = FaceLivenessDetectorPlugin()
+    registrar.addMethodCallDelegate(instance, channel: channel)
+
     let handler = EventStreamHadler()
     let eventChannel = FlutterEventChannel(name: "face_liveness_event", binaryMessenger: registrar.messenger())
     eventChannel.setStreamHandler(handler)
@@ -17,6 +18,11 @@ public class FaceLivenessDetectorPlugin: NSObject, FlutterPlugin {
   }
   
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result(FlutterMethodNotImplemented)
+
+    if call.method == "getPlatformVersion"{
+      result("iOS " + UIDevice.current.systemVersion)
+    } else {
+      result(FlutterMethodNotImplemented)
+    }
   }
 } 

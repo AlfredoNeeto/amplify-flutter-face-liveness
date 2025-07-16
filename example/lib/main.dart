@@ -89,6 +89,7 @@ class _FaceLivenessScreenState extends State<FaceLivenessScreen> {
       child: FaceLivenessDetector(
         sessionId: _sessionId,
         region: _region,
+        disableStartView: true,
         onComplete: _onLivenessComplete,
         onError: _onLivenessError,
       ),
