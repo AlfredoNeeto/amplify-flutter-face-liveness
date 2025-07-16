@@ -26,3 +26,32 @@ public class FaceLivenessDetectorPlugin: NSObject, FlutterPlugin {
     }
   }
 } 
+
+class EventStreamHadler: NSObject, FlutterStreamHandler {
+    private var eventSink: FlutterEventSink?
+    
+    func onComplete() {
+        guard let eventSink = eventSink else {
+            return
+        }
+        eventSink("complete")
+    }
+    
+    func onError(code: String) {
+        guard let eventSink = eventSink else {
+            return
+        }
+        eventSink(code)
+    }
+    
+    
+    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        eventSink = events
+        return nil
+    }
+    
+    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        eventSink = nil
+        return nil
+    }
+} 
