@@ -2,7 +2,7 @@ import Flutter
 import UIKit
 import face_liveness_detector
 
-public class SwiftFaceLivenessDetectorPlugin: NSObject, FlutterPlugin {
+public class FaceLivenessDetectorPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     // Forward registration to our actual plugin implementation
     // The FaceLivenessPlugin class needs to match the class name in the face_liveness_detector module

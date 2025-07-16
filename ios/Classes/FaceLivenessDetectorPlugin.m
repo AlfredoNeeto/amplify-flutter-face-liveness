@@ -9,6 +9,6 @@
 
 @implementation FaceLivenessDetectorPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftFaceLivenessDetectorPlugin registerWithRegistrar:registrar];
+  [FaceLivenessDetectorPlugin registerWithRegistrar:registrar];
 }
 @end 
